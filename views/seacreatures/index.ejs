@@ -1,0 +1,19 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sea Creatures Index</title>
+  </head>
+  <a href="/seaCreatures/new">Add Your Favorite Sea Creature</a>
+  <body>
+    <h1>All Creatures</h1>
+    <ul>
+        <% seaCreatures.forEach(seaCreature => { %>
+            <li><a href="/seaCreatures/<%= seaCreature._id %>"> <%= seaCreature.name %></a></li>
+        <% }); %>
+    </ul>
+  </body>
+</html>
+

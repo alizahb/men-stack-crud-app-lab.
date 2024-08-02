@@ -1,0 +1,30 @@
+
+ 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add a sea creature</title>
+  </head>
+  <a href="/seaCreatures/">Back to Sea Creatures</a>
+  <body>
+    <h1>Add your favorite sea creature!</h1>
+    <form action="/seacreatures" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name"/>
+
+        <label for="phylum">Phylum:</label>
+        <input type="text" name="phylum" id="class"/>
+
+        <label for="description">Description:</label>
+        <input type="text" name="description" id="description"/>
+
+        <label for="mightKillYou">Might kill you</label>
+        <input type="checkbox" name="mightKillYou" id="mightKillYou" />
+
+        <button type="submit">Submit</button>
+
+    </form>
+  </body>
+</html>
