@@ -1,0 +1,20 @@
+<body>
+    <h1>Edit <%= seaCreature.name %></h1>
+    <form action="/seaCreatures/<%seaCreature._id%>?_method=PUT" method="POST">
+      <label for="name">Name:</label>
+      <input type="text" name="name" value="<%= seaCreature.name %>" />
+        
+      <label for ="phylum"> Phylum:</label>
+      <input type="text" name="phylum" value="<%= seaCreature.phylum %>"/>
+
+      <label for = "description"> Description:</label>
+      <input type="text" name="description" value="<%= seaCreature.description %>" />
+
+      <label for="mightKillYou">Might kill you?</label>
+      <input type="checkbox" name="mightKillYou" id="mightKillYou" <% if (seaCreature.mightKillYou) { %>checked<% } %> />
+      
+      <button type="submit">Update Sea Creature</button>
+    </form>
+    <a href="/seaCreatures">Back to Sea Creatures </a>
+  </body>
+  

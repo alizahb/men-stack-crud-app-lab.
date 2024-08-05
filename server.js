@@ -49,11 +49,15 @@ app.get('/seacreatures/new', (req, res) => {
     res.render('seacreatures/new.ejs');
 });   
 
-app.get('/seacreatures/:Id', async (req, res) => {
-    const specificCreature = await Seacreature.findById(req.params.Id);
-    res.render('seacreatures/show.ejs', {seaCreature: specificCreature});
-}); 
+app.get('/seacreatures/:id', async (req, res) => {
+    try {
+    const seaCreature = await Seacreature.findById(req.params.id);
+    res.render('seacreatures/show.ejs', {seaCreature: seaCreature});
+} catch (error) {
 
+    res.status(400).json({msg: error.message}); 
+}
+}); 
 
 
 app.post('/seacreatures', async (req, res) => {
@@ -78,9 +82,33 @@ app.get('/seacreatures', async (req,res) => {
     res.render('seaCreatures/index.ejs', {seaCreatures: allCreatures}); 
 }); 
 
-app.delete("/seacreatures/:Id", async (req, res) => {
-    const deletedCreature = await Seacreature.findByIdAndDelete (req.params.Id);
-    res.redirect('/seacreatures')
+//Update
+
+
+app.get('/seacreatures/:id/edit', async (req, res) => {
+    const collectedCreature = await Seacreature.findById(req.params.id);
+    res.render('seaCreatures/edit.ejs', {
+        seaCreature: collectedCreature,
+    }); 
+}); 
+
+app.put('/seacreatures/:id', async (req, res) => {
+    try {
+    await Seacreature.findOneAndUpdate({_id:req.params.id}, req.body, {new: true} )
+        res.redirect('/seacreatures'); 
+
+    }catch(error) {
+        res.status(400).json ({msg:error.message}); 
+    }
+})
+
+app.delete('/seacreatures/:id', async (req, res) =>  {
+    try { 
+        await Seacreature.findOneAndDelete({_id:req.params.id}); 
+        res.redirect('/seacreatures'); 
+    } catch (error) {
+        res.status(400).json({msg:error.message}); 
+    }
 }); 
   
 

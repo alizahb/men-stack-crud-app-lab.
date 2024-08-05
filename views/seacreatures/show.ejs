@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= seaCreature.name %></title>
   </head>
-  <a href="/seaCreatures/">Back to Sea Creatures</a>
   <body>
+  <a href="/seaCreatures/">Back to Sea Creatures</a>
     <h1><%= seaCreature.name %></h1>
     <h2>Phylum:<%= seaCreature.phylum %> </h2>
 
@@ -20,10 +20,10 @@
             <img src ="https://th.bing.com/th/id/OIP.KKKCEcoIEvHoMUk7MHcbZQHaHa?rs=1&pid=ImgDetMain" alt ="Danger Warning Symbol" width= 90px/>
             <% } %>
   </body>
-<form action="/seaCreatures/<%=seaCreature._Id%>?_method=DELETE" method="POST">
+  <form action="/seaCreatures/<%=seaCreature._id%>?_method=DELETE" method="POST">
     <button type="submit">Delete <%=seaCreature.name%></button>
 </form>
-
+<a href = '/seaCreatures/<%= seaCreature._id %>/edit'> Edit <%= seaCreature.name %></a>
 <a href="/seaCreatures"> Back to Sea Creatures </a>
 </html>
 
