@@ -1,6 +1,6 @@
 <body>
     <h1>Edit <%= seaCreature.name %></h1>
-    <form action="/seaCreatures/<%seaCreature._id%>?_method=PUT" method="POST">
+    <form action="/seaCreatures/<%= seaCreature._id %>?_method=PUT" method="POST">
       <label for="name">Name:</label>
       <input type="text" name="name" value="<%= seaCreature.name %>" />
         
@@ -17,4 +17,3 @@
     </form>
     <a href="/seaCreatures">Back to Sea Creatures </a>
   </body>
-  

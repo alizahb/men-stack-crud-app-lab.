@@ -85,6 +85,29 @@ app.get('/seacreatures', async (req,res) => {
 //Update
 
 
+app.put('/seaCreatures/:id', async (req, res) => {
+    try {  
+        console.log(`PUT request recieved for ID: ${req.params.id}`);
+        console.log('Request body:', req.body); 
+        if (req.body.mightKillYou === 'on') {
+        req.body.mightKillYou = true;
+    } else {
+        req.body.mightKillYou = false; 
+    } const updatedSeacreature = await Seacreature.findByIdAndUpdate(
+        req.params.id, 
+        req.body, 
+        {new: true, runValidators: true} 
+    );
+    if (!updatedSeacreature) {
+        return res.status(404).json({msg: 'Sea creature not found'})
+    } 
+    res.redirect('/seacreatures');
+        } catch (error) {
+            console.error('Error updating sea creature:', error); 
+        res.status(400).json ({msg:error.message}); 
+    }
+}); 
+
 app.get('/seacreatures/:id/edit', async (req, res) => {
     const collectedCreature = await Seacreature.findById(req.params.id);
     res.render('seaCreatures/edit.ejs', {
@@ -92,15 +115,6 @@ app.get('/seacreatures/:id/edit', async (req, res) => {
     }); 
 }); 
 
-app.put('/seacreatures/:id', async (req, res) => {
-    try {
-    await Seacreature.findOneAndUpdate({_id:req.params.id}, req.body, {new: true} )
-        res.redirect('/seacreatures'); 
-
-    }catch(error) {
-        res.status(400).json ({msg:error.message}); 
-    }
-})
 
 app.delete('/seacreatures/:id', async (req, res) =>  {
     try { 
